@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tic Tac Toe Game</title>
+</head>
+<body>
+    <div class="center">
+        <h1>Tic Tac Toe</h1>
+        <div class="tic-tile">
+            <div class="row row1">
+                <div class="tl" name="pField"><div class="r-field"></div></div>
+                <div class="tc" name="pField"><div class="r-field"></div></div>
+                <div name="pField"><div class="r-field"></div></div>
+            </div>
+            <div class="row row2">
+                <div class="ml" name="pField"><div class="r-field"></div></div>
+                <div class="mc" name="pField"><div class="r-field"></div></div>
+                <div name="pField"><div class="r-field"></div></div>
+            </div>
+            <div class="row row3">
+                <div class="ll" name="pField"><div class="r-field"></div></div>
+                <div class="lc" name="pField"><div class="r-field"></div></div>
+                <div name="pField"><div class="r-field"></div></div>
+            </div>
+        </div>
+        <div class="toggle">
+            <div>
+                <label class="switch">
+                    <input type="checkbox" name="gType">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div>
+                <label id="gResult" class="gResult"></label>
+            </div>
+        </div>
+        <div class="p-turn" id="pField"></div>
+        <div class="gMode">
+            <label for="gMode">Difficulty:</label>
+            <select name="gMode" id="gMode">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <div class="reset-btn">
+            <button class="reset" onclick="reset()">Reset</button>
+        </div>
+    </div>
+    <div class="loginPopup">
+        <div class="background" id="bckrnd">
+            <div class="formPopup" id="popupForm">
+            <form class="formContainer">
+                <h2>Player <div id="win"></div> wins!</h2>
+            
+
+                <button type="submit" class="btn" onclick="closeForm()">Play Again?</button>
+            </form>
+        </div>
+    </div>
+      </div>
+
+
+</body>
+<script src="./script.js"></script>
+</html>
