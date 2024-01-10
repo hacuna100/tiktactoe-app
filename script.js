@@ -21,13 +21,15 @@ fieldArray.forEach(function(field) {
             }
         }
         else if (playType.innerHTML == "Computer") {
-
+            if (field.firstChild.innerHTML == '') {
+                compPlay(field);
+            }
         }
 
         // Moves the inputs into an array
         resultArray = trackerArray(resultArray)
 
-        // validates if there is a winner
+        // Validates if there is a winner or a draw
         winValidation(resultArray);
     })
 })
@@ -63,35 +65,55 @@ function vsPlay(pTurn) {
     }
 }
 
+function compPlay(playTurn) {
+
+}
+
 // Function that checks the array to see if there is a winner
 function winValidation(rArray) {
+    let gameResults;
     // Check Rows
     for (let i = 0; i < 3; i++) {
         const start = i * 3;
         if (rArray[start] === rArray[start + 1] && rArray[start + 1] === rArray[start + 2] && rArray[start] !== '') {
-        openForm(rArray[start]);
-            //confirm("Player " + rArray[start] + " wins!");
+        gameResults = rArray[start];
         }
     }
     
     // Check columns
     for (let j = 0; j < 3; j++) {
         if (rArray[j] === rArray[j + 3] && rArray[j + 3] === rArray[j + 6] && rArray[j] !== '') {
-            //confirm("Player " + rArray[j] + " wins!");
-            openForm(rArray[j]);
+        gameResults = rArray[j];
         }
     }
     
     // Check diagonals
     if ((rArray[0] === rArray[4] && rArray[4] === rArray[8] && rArray[0] !== '')) {
-        //confirm("Player " + rArray[0] + " wins!");
-        openForm(rArray[0]);
+        gameResults = rArray[0];
     }
 
     // Check diagonals
     if ((rArray[2] === rArray[4] && rArray[4] === rArray[6] && rArray[2] !== '')) {
-        //confirm("Player " + rArray[2] + " wins!");
-        openForm(rArray[2]);
+        gameResults = rArray[2];
+    }
+    
+    if (gameResults != null) {
+        if (isBoardFull(rArray)) {
+            openForm("Its a Draw!");
+        }
+        else {
+            openForm("Player " + gameResults + " wins!");
+        }
+        
+    }
+}
+
+// Checks to see if the board is full for a draw
+function isBoardFull(resultList) {
+    const results = resultList.every(elem => elem !== '');
+
+    if (results) {
+        return true;
     }
 }
 
