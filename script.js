@@ -18,19 +18,29 @@ fieldArray.forEach(function(field) {
         if (playType.innerHTML == "VS") {
             if (field.firstChild.innerHTML == '') {
                 vsPlay(field);
+
+                // Moves the inputs into an array
+                resultArray = trackerArray(resultArray);
+                
+                // Validates if there is a winner or a draw
+                winValidation(resultArray);
             }
         }
         else if (playType.innerHTML == "Computer") {
             if (field.firstChild.innerHTML == '') {
-                compPlay(field);
+                playerTurn(field);
+                
+                // Moves the inputs into an array
+                resultArray = trackerArray(resultArray);
+                
+                compPlay(resultArray);
+                resultArray = [];
+                // Moves the inputs into an array
+                resultArray = trackerArray(resultArray);
+                
+                winValidation(resultArray);
             }
-        }
-
-        // Moves the inputs into an array
-        resultArray = trackerArray(resultArray)
-
-        // Validates if there is a winner or a draw
-        winValidation(resultArray);
+        }   
     })
 })
 
@@ -65,8 +75,28 @@ function vsPlay(pTurn) {
     }
 }
 
-function compPlay(playTurn) {
+function playerTurn(pTurn) {
+    pTurn.firstChild.innerHTML = p1;
+}
 
+function compPlay(playArray) {
+    if(!isBoardFull(playArray)) {
+        var e = document.getElementById('gMode');
+        if (e.options[e.selectedIndex].text == "Random") {
+            var compResult = Math.floor(Math.random() * 9);
+            var bool = true;
+            while (bool) {
+                if (playArray[compResult] == '') {
+                    bool = false;
+                    document.getElementById("f" + compResult).innerHTML = p2;
+                }
+                else {
+                    compResult = Math.floor(Math.random() * 9);
+                }
+            }
+             
+        }
+    }
 }
 
 // Function that checks the array to see if there is a winner
@@ -96,21 +126,20 @@ function winValidation(rArray) {
     if ((rArray[2] === rArray[4] && rArray[4] === rArray[6] && rArray[2] !== '')) {
         gameResults = rArray[2];
     }
-    
+
     if (gameResults != null) {
-        if (isBoardFull(rArray)) {
-            openForm("Its a Draw!");
-        }
-        else {
-            openForm("Player " + gameResults + " wins!");
-        }
-        
+        openForm("Player " + gameResults + " wins!");
+        return;
+    }
+
+    if (isBoardFull(rArray)) {
+        openForm("Its a Draw!");
     }
 }
 
 // Checks to see if the board is full for a draw
 function isBoardFull(resultList) {
-    const results = resultList.every(elem => elem !== '');
+    var results = resultList.every(elem => elem !== '');
 
     if (results) {
         return true;

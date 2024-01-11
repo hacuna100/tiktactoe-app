@@ -11,19 +11,19 @@
         <h1>Tic Tac Toe</h1>
         <div class="tic-tile">
             <div class="row row1">
-                <div class="tl" name="pField"><div class="r-field"></div></div>
-                <div class="tc" name="pField"><div class="r-field"></div></div>
-                <div name="pField"><div class="r-field"></div></div>
+                <div class="tl" name="pField"><div class="r-field" id="f0"></div></div>
+                <div class="tc" name="pField"><div class="r-field" id="f1"></div></div>
+                <div name="pField"><div class="r-field" id="f2"></div></div>
             </div>
             <div class="row row2">
-                <div class="ml" name="pField"><div class="r-field"></div></div>
-                <div class="mc" name="pField"><div class="r-field"></div></div>
-                <div name="pField"><div class="r-field"></div></div>
+                <div class="ml" name="pField"><div class="r-field" id="f3"></div></div>
+                <div class="mc" name="pField"><div class="r-field" id="f4"></div></div>
+                <div name="pField"><div class="r-field" id="f5"></div></div>
             </div>
             <div class="row row3">
-                <div class="ll" name="pField"><div class="r-field"></div></div>
-                <div class="lc" name="pField"><div class="r-field"></div></div>
-                <div name="pField"><div class="r-field"></div></div>
+                <div class="ll" name="pField"><div class="r-field" id="f6"></div></div>
+                <div class="lc" name="pField"><div class="r-field" id="f7"></div></div>
+                <div name="pField"><div class="r-field" id="f8"></div></div>
             </div>
         </div>
         <div class="toggle">
@@ -41,8 +41,7 @@
         <div class="gMode">
             <label for="gMode">Difficulty:</label>
             <select name="gMode" id="gMode">
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
+                <option value="random">Random</option>
                 <option value="hard">Hard</option>
             </select>
         </div>
@@ -55,8 +54,6 @@
             <div class="formPopup" id="popupForm">
             <form class="formContainer">
                 <h2><div id="win"></div></h2>
-            
-
                 <button type="submit" class="btn" onclick="closeForm()">Play Again?</button>
             </form>
         </div>
